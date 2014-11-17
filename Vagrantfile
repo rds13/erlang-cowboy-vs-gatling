@@ -3,7 +3,7 @@
 hostname = "gatling"
 
 nodes = [
-  {:hostname => 'server', :ip => '192.168.20.240', :ssh_port => 2267},
+  {:hostname => 'server', :ip => '192.168.20.240', :ssh_port => 2267, :memory => 2048},
   {:hostname => 'client1', :ip => '192.168.20.241', :ssh_port => 2268},
   {:hostname => 'client2', :ip => '192.168.20.242', :ssh_port => 2269},
   {:hostname => 'client3', :ip => '192.168.20.243', :ssh_port => 2270},
