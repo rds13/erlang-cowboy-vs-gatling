@@ -3,7 +3,7 @@
 hostname = "gatling"
 
 nodes = [
-  {:hostname => 'server', :ip => '192.168.20.240', :ssh_port => 2267, :memory => 2048},
+  {:hostname => 'server', :ip => '192.168.20.240', :ssh_port => 2267, :memory => 4096, :cpu => 4},
   {:hostname => 'client1', :ip => '192.168.20.241', :ssh_port => 2268},
   {:hostname => 'client2', :ip => '192.168.20.242', :ssh_port => 2269},
   {:hostname => 'client3', :ip => '192.168.20.243', :ssh_port => 2270},
@@ -113,9 +113,11 @@ Vagrant.configure("2") do |config|
       node_config.vm.network :public_network, :bridge => 'en0: Ethernet 1', ip: node[:ip]
 
       memory = node[:memory] || 1024
+      cpu = node[:cpu] || 1
       # More memory than the default, since we're running a lot of stuff (512M)
       config.vm.provider :virtualbox do |v|
-        v.customize ["modifyvm", :id, "--memory", memory]
+        v.memory = memory
+        v.cpus = cpu
         #     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         #     v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
       end
